@@ -1,0 +1,211 @@
+      <!-- - - - - - - - -  Cargar CV Section - - - - - - - -  -->
+      <section id="cargarcv" class="team sections-bg">
+        <div class="container" data-aos="fade-up">
+          <div class="section-header">
+            <h2>Cargar CV</h2>
+            <p>Dejanos tu Currículum Vitae, te estamos buscando!</p>
+          </div>
+          <div class="row gy-4">
+            <div class="col-lg-4">
+              <img
+                src="assets/images/cargarcv2.jpg"
+                class="img-fluid rounded-4 mb-4 d-none d-lg-block"
+                alt=""
+              />
+            </div>
+            <div class="col-lg-8">
+              <div class="content ps-0 ps-lg-5">
+                <!-- - - - - - - - -  Formulario de CV - - - - - - - -  -->
+                <form id="cv-form" class="form-group row m-1">
+                  <div class="p-1 col-md-6 col-sm-12">
+                    <label for="nombre" class="col-form-label">Nombre:</label>
+                    <input
+                      type="text"
+                      name="nombre"
+                      id="nombre"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                  <div class="p-1 col-md-6 col-sm-12">
+                    <label for="apellido" class="col-form-label"
+                      >Apellido:</label
+                    >
+                    <input
+                      type="text"
+                      name="apellido"
+                      id="apellido"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                  <div class="p-1 col-md-6 col-sm-12">
+                    <label for="dni" class="col-form-label"
+                      >DNI / CI / LC /LE:</label
+                    >
+                    <input
+                      type="text"
+                      name="dni"
+                      id="dni"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                  <div class="p-1 col-md-6 col-sm-12">
+                    <label for="email" class="col-form-label">Email:</label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                  <div class="p-1 col-md-6 col-sm-12">
+                    <label for="telefono" class="col-form-label"
+                      >Teléfono:</label
+                    >
+                    <input
+                      type="text"
+                      name="telefono"
+                      id="telefono"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                  <div class="p-1 col-md-6 col-sm-12">
+                    <label for="estcivil" class="col-form-label"
+                      >Estado civil:</label
+                    >
+                    <div>
+                      <select
+                        name="estcivil"
+                        id="estcivil"
+                        class="form-control"
+                        required
+                      >
+                        <option value="">Seleccione...</option>
+                        <option>Soltero</option>
+                        <option>Casado</option>
+                        <option>Divorciado</option>
+                        <option>En pareja</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="p-1 col-lg-4 col-md-6 col-sm-12">
+                    <label for="ciudad" class="col-form-label">Ciudad:</label>
+                    <input
+                      name="ciudad"
+                      type="text"
+                      placeholder="Ingresar ciudad"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                  <div class="p-1 col-lg-4 col-md-6 col-sm-12">
+                    <label for="provincia" class="col-form-label"
+                      >Provincia:</label
+                    >
+                    <input
+                      name="provincia"
+                      type="text"
+                      placeholder="Ingresar provincia"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                  <div class="p-1 col-lg-4 col-md-6 col-sm-12">
+                    <label for="cp" class="col-form-label">Código Postal:</label
+                    >
+                    <input
+                      name="cp"
+                      type="text"
+                      placeholder="Ingresar código postal"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                  <div class="p-1 col-lg-4 col-md-6 col-sm-12">
+                    <label for="disponibilidad" class="col-form-label"
+                      >Disponibilidad horaria:</label
+                    >
+                    <div>
+                      <select
+                        name="disponibilidad"
+                        id="disponibilidad"
+                        class="form-control"
+                        required
+                      >
+                        <option value="">Seleccione...</option>
+                        <option>FULL-TIME</option>
+                        <option>PART-TIME</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="p-1 col-lg-4 col-md-6 col-sm-12">
+                    <label for="diasdisp" class="col-form-label"
+                      >Días disponibles:</label
+                    >
+                    <div>
+                      <select
+                        name="diasdisp"
+                        id="diasdisp"
+                        class="form-control"
+                        required
+                      >
+                        <option value="">Seleccione...</option>
+                        <option>Lunes a viernes</option>
+                        <option>Lunes a sabados</option>
+                        <option>Solo fin de semana</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="p-1 col-lg-4 col-md-6 col-sm-12">
+                    <label for="conducir" class="col-form-label"
+                      >Carnet de conducir:</label
+                    >
+                    <div>
+                      <input
+                        type="radio"
+                        name="conducir"
+                        value="SI"
+                        id="si"
+                        required
+                      />
+                      <label for="si">Si</label>
+                      <input
+                        type="radio"
+                        name="conducir"
+                        value="NO"
+                        id="no"
+                        required
+                      />
+                      <label for="no">No</label>
+                    </div>
+                  </div>
+                  <div class="p-1 col-12">
+                    <label for="mensaje" class="col-form-label"
+                      >Escribe un comentario</label
+                    >
+                    <textarea name="mensaje" id="mensaje" cols="30" rows="10"
+                    ></textarea>
+                  </div>
+                  <div class="p-1 col-12">
+                    <label for="file" class="col-form-label">Subir CV:</label>
+                    <input
+                      name="file"
+                      id="uploadfile"
+                      type="file"
+                      class="file"
+                      accept=".pdf, .doc, .docx"
+                    />
+                  </div>
+                  <div><input type="submit" class="btn" value="Enviar" /></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section><!-- End CargarCV Section -->
+    </section><!-- End #main -->

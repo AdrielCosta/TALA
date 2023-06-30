@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/header/Header.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Team from "../components/Team.astro";
+import Action from "../components/Action.astro";
+import Metodologia from "../components/Metodologia.astro";
+import Banner1 from "../components/Banner1.astro";
+import Contact from "../components/Contact.astro";
+import Cv from "../components/Cv.astro";
+import Footer from "../components/footer/Footer.astro";
+---
+
+<Layout title="TALA Consultora - Consultoría de RRHH para Empresas.">
+  <Header />
+
+  <Hero />
+
+  <main id="main">
+    <About />
+    <Team />
+    <Action
+      title="Prepárate para dar el siguiente paso y forjar un equipo excepcional"
+      descripcion="Una empresa lista para una nueva etapa se distingue por su capacidad para reconocer el potencial del talento humano y darle la bienvenida como parte integral de su crecimiento y éxito futuro."
+      boton=true
+      btn_text="Contáctanos"
+      btn_url="#contact"
+    />
+    <Metodologia />
+    <Banner1 />
+    <Contact />
+    <Action
+      title="¿Está teniendo dificultades para encontrar los empleados adecuados para su empresa?"
+      descripcion="Nuestro equipo de experimentados consultores de recursos humanos puede trabajar con usted para identificar las necesidades únicas de su empresa y proporcionar soluciones personalizadas para desbloquear el potencial de su empresa."
+    />
+    <Cv />
+    <Footer />
+  </main>
+</Layout>

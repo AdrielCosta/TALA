@@ -1,0 +1,32 @@
+---
+export interface Props {
+  title: string;
+  descripcion: string;
+  boton?: boolean;
+  btn_text?: string;
+  btn_url?: string
+}
+
+const { title, descripcion, boton = false, btn_text, btn_url} = Astro.props;
+---
+
+<!-- - - - - - - - -  Call To Action Section - - - - - - - -  -->
+<section id="call-to-action" class="call-to-action">
+  <div class="container text-center" data-aos="zoom-out">
+    <h3>
+      {title}
+    </h3>
+    <p>
+      {descripcion}
+    </p>
+    {
+      boton && (
+        <a class="cta-btn" href={btn_url}>
+          {btn_text}
+        </a>
+      )
+    }
+  </div>
+</section><!-- End Call To Action Section -->
+
+

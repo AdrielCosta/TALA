@@ -1,0 +1,209 @@
+---
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Creada y dirigida por profesionales de la salud, formadas en psicodiagnóstico y
+		psicología laboral, TALA te ofrece consultoría de Recursos Humanos para empresas"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicons -->
+    <link href="assets/images/favicon.png" rel="icon" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link href="/assets/images/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="/assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="/assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Main CSS File -->
+    <link href="/assets/stylesheets/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <wc-toast position="top-center"></wc-toast>
+    <slot />
+
+    <a
+      href="#"
+      class="scroll-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i></a
+    >
+
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js" is:inline
+    ></script>
+    <script src="/assets/vendor/aos/aos.js" is:inline></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js" is:inline></script>
+
+    <!-- Template Main JS File -->
+    <script src="/assets/javascripts/main.js" is:inline></script>
+
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+
+    <script type="text/javascript">
+      (function () {
+        // https://dashboard.emailjs.com/admin/account
+        emailjs.init(import.meta.env.PUBLIC_EMAILJS);
+      })();
+    </script>
+
+    <script type="text/javascript">
+      import { toast } from "wc-toast";
+      window.onload = function () {
+        document
+          .getElementById("contact-form")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+            emailjs.sendForm("service_5ni2whr", "template_9nkodnd", this).then(
+              function () {
+                console.log("SUCCESS!");
+                toast.success("Datos enviados correctamente!");
+                document.getElementById("contact-form").reset();
+              },
+              function (error) {
+                console.log("FAILED...", error);
+                toast.error("Hubo un error al enviar los datos!");
+              }
+            );
+          });
+      };
+    </script>
+
+<script>
+  import { toast } from "wc-toast";
+  const form = document.forms["cv-form"];
+
+  // Llama a esta función cuando se envíe el formulario
+  function handleFormSubmit(e) {
+    let hayError = false;
+    e.preventDefault();
+
+    const file = form.file.files[0];
+    if (file === undefined) {
+      toast.error("Debe seleccionar un archivo PDF o Word!");
+    } else {
+      toast.promise(
+        new Promise((resolve, reject) => {
+          fetch(import.meta.env.PUBLIC_SHEETURL, {
+            method: "POST",
+            body: new FormData(form),
+          })
+            .then((response) => {
+              if (response.ok) {
+                resolve(response);
+              } else {
+                reject(new Error("error"));
+              }
+            })
+            .catch((error) => {
+              reject(new Error(error.message));
+            });
+        }),
+        {
+          loading: "Enviando datos...",
+          success: "Datos enviados correctamente!",
+          error: "Hubo un error al enviar datos",
+        }
+      );
+
+      toast.promise(
+        new Promise((resolve, reject) => {
+          const fr = new FileReader();
+          fr.readAsArrayBuffer(file);
+          fr.onload = (f) => {
+            const qs = new URLSearchParams({
+              filename: file.name,
+              mimeType: file.type,
+            });
+            fetch(`${import.meta.env.PUBLIC_CVURL}?${qs}`, {
+              method: "POST",
+              body: JSON.stringify([...new Int8Array(f.target.result)]),
+            })
+              .then((response) => {
+                if (response.ok) {
+                  resolve(response.json());
+                } else {
+                  reject(new Error("error"));
+                }
+              })
+              .then(() => {
+                document.getElementById("cv-form").reset();
+              })
+              .catch((error) => {
+                reject(new Error(error.message));
+              });
+          };
+        }),
+        {
+          loading: "Subiendo CV...",
+          success: "Ya tenemos tu CV!",
+          error: "Hubo un error al subir CV... inténtalo nuevamente!",
+        }
+      );
+    }
+  }
+
+  function updateUrl(url) {
+    var div = document.getElementById("output");
+    div.innerHTML = '<a href="' + url + '">Got it!</a>';
+  }
+
+  document
+    .getElementById("cv-form")
+    .addEventListener("submit", handleFormSubmit);
+
+  function handleResponse(response) {
+    console.log(response);
+  }
+</script>
+    <style is:global>
+      @font-face {
+        font-family: "devasia_2regular";
+        src: url("/assets/fonts/devasia_regular-webfont.woff2") format("woff2"),
+          url("/assets/fonts/devasia_regular-webfont.woff") format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+  </body>
+</html>
